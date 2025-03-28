@@ -21,6 +21,11 @@ def read_population_data(file_path):
 
     return countries
 
+
+def sort_by_area(countries):
+    return sorted(countries, key=lambda x: x[1], reverse=True)
+
+
 def main():
     file_path = 'population.txt'
     countries = read_population_data(file_path)
