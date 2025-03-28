@@ -26,11 +26,29 @@ def sort_by_area(countries):
     return sorted(countries, key=lambda x: x[1], reverse=True)
 
 
+def sort_by_population(countries):
+    return sorted(countries, key=lambda x: x[2], reverse=True)
+
+
 def main():
     file_path = 'population.txt'
-    countries = read_population_data(file_path)
 
-    print(countries)
+    try:
+        countries = read_population_data(file_path)
+
+        print("\nВідсортовано за площею:")
+        for country, area, population in sort_by_area(countries):
+            print(f"{country}: {area} км², {population} осіб")
+
+        print("\nВідсортовано за населенням:")
+        for country, area, population in sort_by_population(countries):
+            print(f"{country}: {area} км², {population} осіб")
+    except FileNotFoundError:
+        print("Помилка: Файл не знайдено!")
+    except ValueError as e:
+        print(f"Помилка у вхідних даних: {e}")
+    except Exception as e:
+        print(f"Невідома помилка: {e}")
 
 
 if __name__ == "__main__":
